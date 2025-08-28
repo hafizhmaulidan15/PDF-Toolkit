@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PDF Toolkit Web — Split • Merge • Insert • Compress</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Custom styles -->
+  <link rel="stylesheet" href="styles.css" />
+
+  <!-- PDF libs (client-side only) -->
+  <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+  <script src="https://unpkg.com/pdfjs-dist@4.8.69/build/pdf.min.js"></script>
+  <script src="https://unpkg.com/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
+</head>
+<body class="text-slate-100">
+  <header class="max-w-6xl mx-auto px-4 pt-10 pb-6">
+    <h1 class="text-2xl sm:text-3xl font-bold tracking-tight">PDF Toolkit Web</h1>
+    <p class="text-sm text-slate-400 mt-1">Split • Merge • Insert • Compress (client-side). No server, no upload.</p>
+  </header>
+
+  <main class="max-w-6xl mx-auto px-4 pb-24 grid md:grid-cols-12 gap-6">
+    <!-- Left: Controls -->
+    <section class="md:col-span-5 lg:col-span-4 glass rounded-2xl p-4 sm:p-6">
+      <div class="flex items-center justify-between mb-3">
+        <h2 class="font-semibold">Mode</h2>
+        <div class="text-xs text-slate-400">
+          Pro tip:
+          <span class="kbd px-1.5 py-0.5 rounded">Ctrl</span> +
+          <span class="kbd px-1.5 py-0.5 rounded">Enter</span> = Jalankan
+        </div>
+      </div>
+
+      <div class="grid grid-cols-2 gap-2">
+        <button class="btn px-3 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-500" data-mode="split">Split</button>
+        <button class="btn px-3 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-500" data-mode="merge">Merge</button>
+        <button class="btn px-3 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-500" data-mode="insert">Insert</button>
+        <button class="btn px-3 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-500" data-mode="compress">Compress</button>
+      </div>
+
+      <!-- Dynamic Panel -->
+      <div id="panel" class="mt-6 space-y-4 text-sm"></div>
+
+      <div class="mt-6 flex items-center gap-2">
+        <button id="runBtn" class="btn w-full px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 disabled:opacity-50">Jalankan</button>
+        <button id="resetBtn" class="btn px-3 py-2.5 rounded-xl bg-slate-700/70 hover:bg-slate-600">Reset</button>
+      </div>
+
+      <p class="mt-3 text-xs text-slate-400">
+        Semua pemrosesan dilakukan di browser kamu. Untuk file besar, sabar, itu normal.
+      </p>
+    </section>
+
+    <!-- Right: Files & Log -->
+    <section class="md:col-span-7 lg:col-span-8 space-y-6">
+      <div class="glass rounded-2xl p-4 sm:p-6">
+        <div class="flex items-center justify-between mb-3">
+          <h2 class="font-semibold">File</h2>
+          <div class="text-xs text-slate-400">Urutkan dengan drag • multiple select OK</div>
+        </div>
+
+        <div id="dropzone" class="dropzone rounded-xl p-5 text-slate-300 text-sm flex flex-col items-center justify-center gap-2">
+          <div>
+            Tarik & jatuhkan PDF ke sini atau
+            <label class="text-indigo-400 underline cursor-pointer">
+              <input id="fileInput" type="file" accept="application/pdf" multiple class="hidden">pilih file
+            </label>
+          </div>
+          <div class="text-xs text-slate-400">Jangan lempar 500MB sekali jalan.</div>
+        </div>
+
+        <ul id="fileList" class="mt-4 space-y-2"></ul>
+      </div>
+
+      <div class="glass rounded-2xl p-4 sm:p-6">
+        <div class="flex items-center justify-between mb-3">
+          <h2 class="font-semibold">Log</h2>
+          <button id="clearLog" class="text-xs text-slate-400 hover:text-slate-200">Bersihkan</button>
+        </div>
+        <pre id="log" class="text-xs whitespace-pre-wrap leading-relaxed min-h-[120px]"></pre>
+      </div>
+    </section>
+  </main>
+
+  <!-- App JS -->
+  <script src="app.js"></script>
+</body>
+</html>

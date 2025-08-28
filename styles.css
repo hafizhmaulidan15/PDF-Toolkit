@@ -1,0 +1,7 @@
+:root { --bg:#0b0f14; --card:#0f172a; --muted:#94a3b8; }
+body { background: linear-gradient(180deg, #0b0f14, #0a0e17); }
+.glass { background: rgba(15,23,42,.7); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,.06); }
+.dropzone { border: 2px dashed rgba(148,163,184,.35); }
+.btn { transition: transform .05s ease; }
+.btn:active { transform: translateY(1px); }
+.kbd { border: 1px solid rgba(148,163,184,.35); }
